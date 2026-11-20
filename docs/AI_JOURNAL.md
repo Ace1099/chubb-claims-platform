@@ -103,3 +103,16 @@
 \- \*\*Verified:\*\* Ran the API, hit /api/users, /api/manager/summary and /api/officer/queue.
 
 
+
+
+
+\## Entry 7: Tests
+
+\- \*\*Asked:\*\* AI for unit tests (state machine, rules) and API integration tests.
+
+\- \*\*Accepted:\*\* WebApplicationFactory with a throwaway SQLite file per run and no sample data, so tests are isolated.
+
+\- \*\*Challenged:\*\* Event handling is async, so the notification assertion polls instead of using a fixed sleep.
+
+\- \*\*Accepted:\*\* Tests cover the full lifecycle plus the security rules (401/403/409) because those are the rules an insurer cares about most.
+
