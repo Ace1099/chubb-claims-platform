@@ -52,3 +52,25 @@
 
 \- \*\*Assumption:\*\* The six APAC markets are not named in the brief; I picked six.
 
+
+
+
+
+\## Entry 4: Events, errors, auth
+
+\- \*\*Asked:\*\* AI to design REST vs Kafka usage.
+
+\- \*\*Accepted:\*\* REST for anything needing an immediate answer; events (Kafka-shaped) for side effects (notifications). Services depend on IEventPublisher; transport is swappable.
+
+\- \*\*Overrode (plan change):\*\* Original plan had events maintain the liability-exposure figure. I changed it: exposure is computed from the database on demand (always consistent, simpler); events only drive notifications.
+
+\- \*\*Accepted:\*\* Idempotent consumer (SourceEventId unique) because Kafka is at-least-once.
+
+\- \*\*Accepted:\*\* Demo-only X-User-Id auth with server-side role checks; real OIDC/JWT is out of scope.
+
+\- \*\*Noted:\*\* Publishing after the DB commit can lose an event if the broker is down (dual-write problem). Production fix: transactional outbox.
+
+
+
+
+
