@@ -74,3 +74,32 @@
 
 
 
+\## Entry 5: API surface
+
+\- \*\*Asked:\*\* AI to design controllers, services and DTOs.
+
+\- \*\*Accepted:\*\* Thin controllers -> ClaimService/ReportingService -> domain methods. Domain entities never leave the API (DTO mappers).
+
+\- \*\*Accepted:\*\* Separate endpoint groups per audience (claims, officer, manager) with role checks on every call.
+
+\- \*\*Accepted:\*\* Exposure rule: approved amount once approved, else claimed amount; excludes Rejected/Settled.
+
+\- \*\*Challenged:\*\* Event publish failure should not fail a request that already committed; logged instead, outbox noted as the production fix.
+
+\- \*\*Accepted (trade-off):\*\* Reporting aggregates in memory; fine for the sprint, would move to SQL GROUP BY / read model at scale.
+
+
+
+\## Entry 6: Wiring and first run
+
+\- \*\*Asked:\*\* AI to wire DI, seed data, Swagger auth, CORS, health check.
+
+\- \*\*Accepted:\*\* Seed with fixed GUIDs for demo users and six sample claims in different states so dashboards are meaningful on first run.
+
+\- \*\*Overrode:\*\* Connection string and seed flag are read lazily from final configuration (not at registration time) so integration tests can override them.
+
+\- \*\*Accepted:\*\* Swagger "Authorize" button for the X-User-Id header to test role-based endpoints.
+
+\- \*\*Verified:\*\* Ran the API, hit /api/users, /api/manager/summary and /api/officer/queue.
+
+
