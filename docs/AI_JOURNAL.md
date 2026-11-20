@@ -16,3 +16,17 @@
 
 \- \*\*Adjusted:\*\* Machine has .NET 9, so the project targets net9.0.
 
+
+
+
+
+\## Entry 2: Project setup
+
+\- \*\*Asked:\*\* AI for scaffold commands (solution, API, xUnit, EF Core + SQLite, Swagger).
+
+\- \*\*Problem:\*\* AI did not pin EF Core versions; NuGet pulled 11.0.0, which is incompatible with net9.0 (NU1202).
+
+\- \*\*Overrode:\*\* Pinned EF Core packages to 9.0.10 to match the .NET 9 SDK.
+
+\- \*\*Lesson:\*\* Always match package major versions to the target framework; verify AI-generated commands against the actual environment.
+
