@@ -116,3 +116,81 @@
 
 \- \*\*Accepted:\*\* Tests cover the full lifecycle plus the security rules (401/403/409) because those are the rules an insurer cares about most.
 
+
+
+
+
+\## Final Entry: Angular Integration, Testing and Submission
+
+
+
+\### AI Assistance
+
+\- Used AI to implement the Angular 20 frontend with separate Claimant, Officer and Manager dashboards.
+
+\- Used AI to integrate Angular HttpClient with the ASP.NET Core REST API.
+
+\- Used AI to troubleshoot integration errors and improve the frontend styling.
+
+
+
+\### Decisions Accepted
+
+\- Standalone Angular components and signals for frontend state management.
+
+\- REST APIs for synchronous claims operations.
+
+\- SQLite for simple local development.
+
+\- Polling for dashboard updates and notifications.
+
+\- Role-based demo authentication using X-User-Id headers.
+
+
+
+\### AI Suggestions Challenged or Corrected
+
+\- The AI-generated frontend initially called GET /api/claims, which returned HTTP 405. Checked Swagger and corrected the endpoint to GET /api/claims/mine.
+
+\- The manager dashboard initially called GET /api/manager/team, which returned HTTP 404. Verified Swagger and corrected the endpoint to GET /api/manager/team-performance.
+
+\- Adapted the frontend implementation for Angular 20 compatibility instead of blindly copying AI-generated code.
+
+
+
+\### Scope Decisions
+
+\- Skipped Docker to prioritize a working local application.
+
+\- Did not implement Kafka integration due to the time-boxed assessment. The existing in-process event mechanism supports prototype notifications.
+
+\- Prioritized core workflows over additional frontend features and automated UI tests.
+
+
+
+\### Verification
+
+\- All 26 backend automated tests passed.
+
+\- Angular production build completed successfully.
+
+\- Verified claim submission and retrieval.
+
+\- Verified officer claim pickup.
+
+\- Verified additional information requests and claimant responses.
+
+\- Verified claim approval and settlement.
+
+\- Verified claim status transitions and audit timeline.
+
+\- Corrected the manager API endpoint; final dashboard verification remains pending.
+
+
+
+\### Reflection
+
+AI accelerated development, but generated code required manual verification against the actual backend API. Swagger, automated tests and end-to-end workflow testing were essential for identifying and correcting integration issues.
+
+
+

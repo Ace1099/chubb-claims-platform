@@ -99,8 +99,8 @@ export class ApiService {
     return this.get<unknown>('/manager/summary');
   }
  teamPerformance() {
-    return this.get<unknown>('/manager/team');
-  }
+  return this.get<unknown>('/manager/team-performance');
+}
 
   static message(error: unknown): string {
     const e = error as {
