@@ -30,3 +30,25 @@
 
 \- \*\*Lesson:\*\* Always match package major versions to the target framework; verify AI-generated commands against the actual environment.
 
+
+
+
+
+\## Entry 3: Domain model
+
+\- \*\*Asked:\*\* AI to design entities (Claim, User, InfoRequest, Decision, ClaimEvent, Notification) and a status state machine.
+
+\- \*\*Accepted:\*\* Business rules live inside the Claim entity (factory method, private setters, PickUp/RequestInfo/Approve/Reject/Settle) so no code path can create an invalid claim or skip a status.
+
+\- \*\*Accepted:\*\* ClaimEvent audit trail written on every transition.
+
+\- \*\*Accepted:\*\* Optimistic concurrency (Version token) so two officers cannot pick up the same claim.
+
+\- \*\*Accepted:\*\* EnsureCreated instead of migrations (sprint trade-off; production would use migrations).
+
+\- \*\*Challenged:\*\* SQLite has no decimal type; money stored as double via a value converter. Trade-off: tiny precision risk; production uses decimal(18,2).
+
+\- \*\*Overrode:\*\* AI's first draft put DomainException inside the state machine file and used it for validation too; split into InvalidInput/Forbidden/NotFound/Domain exceptions so each maps to a proper HTTP status.
+
+\- \*\*Assumption:\*\* The six APAC markets are not named in the brief; I picked six.
+
